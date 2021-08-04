@@ -1,5 +1,3 @@
-#import numpy as np
-#rom numpy.core.fromnumeric import prod
 
 
 def readMatrix(rows,cols,matrix1):
@@ -35,8 +33,6 @@ if readMatrix(m1rows,m1cols,matrix1) == False or readMatrix(m2rows,m2cols,matrix
     quit()
 
  
-#product = np.matmul(np.array(matrix1),np.array(matrix2)) 
-#print(product)
 product=[]
 
 for i in range(m1rows):

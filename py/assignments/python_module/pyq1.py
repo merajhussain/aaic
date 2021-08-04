@@ -1,5 +1,5 @@
-import numpy as np
-from numpy.core.fromnumeric import prod
+#import numpy as np
+#rom numpy.core.fromnumeric import prod
 
 
 def readMatrix(rows,cols,matrix1):
@@ -24,8 +24,8 @@ m2rows = int(input("Enter the number of rows for matrix2:"))
 m2cols = int(input("Enter the number of columns for maxtrix2:"))
  
 if m1cols != m2rows:
-    print('''Error:number of rows in first matrix should be
-             equal to columns in second row''')
+    print('''Error:number of columns in first matrix should be
+             equal to rows in second matrix''')
     quit()
 
 matrix1 = []
@@ -35,14 +35,24 @@ if readMatrix(m1rows,m1cols,matrix1) == False or readMatrix(m2rows,m2cols,matrix
     quit()
 
  
-product = np.matmul(np.array(matrix1),np.array(matrix2)) 
+#product = np.matmul(np.array(matrix1),np.array(matrix2)) 
+#print(product)
+product=[]
+
+for i in range(m1rows):
+    row=[]
+    res=0
+    for j in range(m2cols):
+        res=0
+        for k in range(m2rows):
+            res += matrix1[i][k]*matrix2[k][j]
+            if k == m2rows-1:
+                row.append(res)
+                #print(res)
+                #print(row)
+                #res=0
+    product.append(row)
+
+
+
 print(product)
- 
-
-
-
-
- 
-
-
-

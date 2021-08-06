@@ -1,4 +1,4 @@
-from collections import deque
+#from collections import deque
 # write your python code here
 # you can take the above example as sample input for your program to test
 # it should work for any general input try not to hard code for only given input strings-
@@ -11,33 +11,36 @@ def curve_smoothing(string):
     i=0
     k=0
     avg=0
-    stack = deque()
+    #stack = deque()
     start=0
     end=0
     while i < len(delimited):
         start=end
         end=0
+        count=0
         if delimited[i] == '_':
             k=i
             while k < len(delimited):
                 if delimited[k]!='_':
                     break
-                stack.append(delimited[k])
+                #stack.append(delimited[k])
+                count +=1
                 k += 1
         else:
-            stack.clear()
+            count=0
+            #stack.clear()
             i +=1
             continue
         
         
-        if len(stack) > 0:
+        if count > 0:
             if delimited[i-1] !='_':
                 if start==0 and i!=0:
                     start=int(delimited[i-1])
             if k < len(delimited) and delimited[k] !='_' :
                 end=int(delimited[k])
                 
-        tc=len(stack)+(1 if start !=0 else 0)+(1 if end!=0 else 0)
+        tc=count+(1 if start !=0 else 0)+(1 if end!=0 else 0)
         avg = 0
         if tc !=0:
             avg=(start+end)/tc
@@ -60,7 +63,7 @@ def curve_smoothing(string):
         while ri <= h:
             delimited[ri]=avg
             ri +=1
-        stack.clear()
+        #stack.clear()
         #print(delimited)
         if k !=0:
             i=k

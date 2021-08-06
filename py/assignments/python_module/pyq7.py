@@ -5,19 +5,22 @@
 
 # you can free to change all these codes/structure
 def curve_smoothing(string):
-    print(string)
+    #print(string)
+    #take the elements into list 'delimited'
     delimited=string.split(',')
     #print(delimited)
     i=0
     k=0
     avg=0
     #stack = deque()
-    start=0
+    #start and end for replacing the underscores with right value
+    start=0 
     end=0
     while i < len(delimited):
         start=end
         end=0
         count=0
+        #detect first '_' and count subsequent underscores
         if delimited[i] == '_':
             k=i
             while k < len(delimited):
@@ -32,7 +35,8 @@ def curve_smoothing(string):
             i +=1
             continue
         
-        
+        #if contigous underscores are found
+        #find the start and end element to calculate the average
         if count > 0:
             if delimited[i-1] !='_':
                 if start==0 and i!=0:
@@ -40,6 +44,7 @@ def curve_smoothing(string):
             if k < len(delimited) and delimited[k] !='_' :
                 end=int(delimited[k])
                 
+        #calculate the average value to replace with '_'
         tc=count+(1 if start !=0 else 0)+(1 if end!=0 else 0)
         avg = 0
         if tc !=0:
@@ -51,16 +56,21 @@ def curve_smoothing(string):
         #print(tc)
         #print(i)
         #print(k)
-        l=i-1
-        h=k
+        #adjust and low and high 
+        #low and high are used to replace the
+        #values correctly for underscores
+        low=i-1
+        high=k
         if i==0:
-            l=i
+            low=i
         if k==len(delimited):
-            h=k-1
-        ri=l
-        #print(l)
-        #print(h)
-        while ri <= h:
+            high=k-1
+        ri=low
+        #print(low)
+        #print(how)
+        #replace the underscores,
+        #ri =>replace Index
+        while ri <= high:
             delimited[ri]=avg
             ri +=1
         #stack.clear()
@@ -70,15 +80,8 @@ def curve_smoothing(string):
         else:
             i +=1
 
-
-
-
-           
-        
     return delimited
-
-
-    
+   
 #S=  "_,_,30,_,_,_,50,_,_"
 #S="_,_,_,24"
 #S="80,_,_,_,_"

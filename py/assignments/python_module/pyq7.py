@@ -92,7 +92,7 @@ smoothed_values= curve_smoothing(S)
 string=""
 i=0
 while i<len(smoothed_values):
-    string +=str(smoothed_values[i])
+    string +=str(int(smoothed_values[i]))
     i +=1
     if i < len(smoothed_values):
         string +=","

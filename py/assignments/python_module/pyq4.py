@@ -23,30 +23,39 @@ def display_dash_board(students, marks):
         markList[students[i]]=marks[i]
     mlPairs = dict(sorted(markList.items(),key=operator.itemgetter(1)));  
     mlPairsRev = dict(sorted(markList.items(),key=operator.itemgetter(1),reverse=True));  
+
      
-   # write code for computing top top 5 and least 5 students
+   #write code for computing top top 5 and least 5 students
     top_5_students = dict()
     least_5_students = dict()
 
     index=0
+    leastMark=0
     for pair in mlPairs.items():
+        if index==0:
+            leastMark=pair[1]
         if  index  <  5:
             least_5_students[pair[0]]=pair[1]
         index +=1
     
     index =0
+    topMark=0
     for pair in mlPairsRev.items():
+        if index==0:
+            topMark=pair[1]
         if  index  <  5:
             top_5_students[pair[0]]=pair[1]
         index +=1
-
-     
-   
+    
+    diff = topMark-leastMark
+    pre_25=diff*0.25
+    pre_75=diff*0.75
+    
     # write code for computing students between 25 and 75
-    #filter out students marks > 25 and then filter out
-    #students with marks < 75
-    students_gt_25 = {student:score for student,score in markList.items() if score>25} 
-    students_within_25_and_75 = {student:score for student,score in students_gt_25.items() if score<75} 
+    #filter out students marks > 25th percentile and then filter out
+    #students with marks < 75th percentile
+    students_gt_25 = {student:score for student,score in markList.items() if score>pre_25} 
+    students_within_25_and_75 = {student:score for student,score in students_gt_25.items() if score<pre_75} 
     
 
     
@@ -74,5 +83,5 @@ print("top 5 students:")
 print(top_5_students)
 print("least 5 students:")
 print(least_5_students)
-print("students who between scored 25 and 75 marks:")
+print("students who scored between 25th percentile and 75th percentile:")
 print(students_within_25_and_75)
